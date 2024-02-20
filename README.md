@@ -1,6 +1,6 @@
 ![logo](assets/readme/logo.png)
 
-# `MindustryModTemplate`
+[GlennFolker's MindustryModTemplate](https://github.com/GlennFolker/MindustryModTemplate)
 
 [Mindustry](https://github.com/Anuken/Mindustry) Java mod template, otherwise known as JAR-modding, complete with [`EntityAnno`](https://github.com/GlennFolker/EntityAnno) and syntax downgrader integration, works for both Android and PC.
 
