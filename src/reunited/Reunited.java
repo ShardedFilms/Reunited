@@ -1,7 +1,7 @@
 package reunited;
 
 import mindustry.mod.*;
-import template.gen.*;
+import reunited.gen.*;
 
 public class Reunited extends Mod{
     @Override
