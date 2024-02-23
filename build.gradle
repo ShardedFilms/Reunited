@@ -25,7 +25,9 @@ plugins{
 }
 
 configure(allprojects){
-    sourceSets.main.java.srcDirs = [layout.projectDirectory.dir('src')]
+    sourceSets.main.java.srcDirs = [layout.projectDirectory.dir(
+            'src/'
+    )]
 
     ext{
         compilerVersion = JavaVersion.current().ordinal() - JavaVersion.VERSION_17.ordinal() + 17
