@@ -28,6 +28,14 @@ import reunited.Reunited;
 
 import java.io.IOException;
 
+import static mindustry.io.SaveIO.save;
+
+
+/**
+ *
+ * This was taken from NewHorizonMod to generate full.
+ *
+ */
 @SuppressWarnings("ResultOfMethodCallIgnored")
 public class UnityPixmaps{
     public static final String PCD_SUFFIX = "-processed";
@@ -108,6 +116,43 @@ public class UnityPixmaps{
             //used to debug
 
             packAndAdd(packer, type.name + "-full", base);
+
+            Rand rand = new Rand();
+            rand.setSeed(type.name.hashCode());
+
+            //generate random wrecks
+
+            int splits = 3;
+            float degrees = rand.random(360f);
+            float offsetRange = Math.max(type.region.width, type.region.height) * 0.15f;
+            Vec2 offset = new Vec2(1, 1).rotate(rand.random(360f)).setLength(rand.random(0, offsetRange)).add(type.region.width/2f, type.region.height/2f);
+
+            Pixmap[] wrecks = new Pixmap[splits];
+            for(int i = 0; i < wrecks.length; i++){
+                wrecks[i] = new Pixmap(type.region.width, type.region.height);
+            }
+
+            VoronoiNoise vn = new VoronoiNoise(type.id, true);
+
+            type.region.scl((int x, int y) -> {
+                //add darker cracks on top
+                boolean rValue = Math.max(Ridged.noise2d(1, x, y, 3, 1f / (20f + type.region.width/8f)), 0) > 0.16f;
+                //cut out random chunks with voronoi
+                boolean vval = vn.noise(x, y, 1f / (14f + type.region.width/40f)) > 0.47;
+
+                float dst =  offset.dst(x, y);
+                //distort edges with random noise
+                float noise = (float) Noise.rawNoise(dst / (9f + type.region.width/70f)) * (60 + type.region.width/30f);
+                int section = (int)Mathf.clamp(Mathf.mod(offset.angleTo(x, y) + noise + degrees, 360f) / 360f * splits, 0, splits - 1);
+                if(!vval) wrecks[section].setRaw(x, y, Color.muli(packer.getRaw(x, y), rValue ? 0.7f : 1f));
+            });
+
+            for(int i = 0; i < wrecks.length; i++){
+                packAndAdd(wrecks[i], "../rubble/" + type.name + "-wreck" + i);
+            }
+
+
+
         }
     }
 
@@ -223,10 +268,21 @@ public class UnityPixmaps{
             Fi n = processedPng(type.name, "-full");
             if(n.exists())return;
             if(!n.exists())try{n.file().createNewFile();}catch(IOException e){Log.err(e);}
+            Fi w1 = processedPng(type.name, "-wreck1");
+            if(w1.exists())return;
+            if(!w1.exists())try{n.file().createNewFile();}catch(IOException e){Log.err(e);}
+            Fi w2 = processedPng(type.name, "-wreck2");
+            if(w2.exists())return;
+            if(!w2.exists())try{n.file().createNewFile();}catch(IOException e){Log.err(e);}
+            Fi w3 = processedPng(type.name, "-wreck3");
+            if(w3.exists())return;
+            if(!w3.exists())try{n.file().createNewFile();}catch(IOException e){Log.err(e);}
             PixmapIO.writePng(n, pixmap);
             Log.info("Created Icon: " + type.localizedName);
         }
+
     }
+
 
     public static void saveAddProcessed(){
         processedDir();
