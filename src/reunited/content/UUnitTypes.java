@@ -51,6 +51,46 @@ public class UUnitTypes {
 
             rotateSpeed = 2f;
             drownTimeMultiplier = 10f;
+            weapons.add(
+                    weapons.add(new Weapon(name + "-gunner"){{
+                                    layerOffset = -0.01f;
+
+                                    x = 28f;
+                                    y = 24f;
+                                    shootY = 8f;
+                                    reload = 6f;
+                                    recoil = 8f;
+                                    rotate = true;
+                                    shootCone = 20f;
+                                    inaccuracy = 2f;
+                                    shoot.shots = 1;
+
+                                    rotateSpeed = 2f;
+                                    //shootSound = Sounds.missile;
+
+                                    bullet = new BasicBulletType(10f, 24f){{
+                                        width = 20f;
+                                        height = 25f;
+                                        shrinkY = 0.5f;
+                                        splashDamageRadius = 80f;
+                                        splashDamage = 100f;
+                                        ammoMultiplier = 5f;
+                                        hitEffect = Fx.sapExplosion;
+                                        despawnEffect = Fx.sapExplosion;
+                                        backColor = trailColor = Pal.sapBulletBack;
+                                        frontColor = lightningColor = lightColor = Pal.sapBullet;
+                                        lifetime = 26;
+                                        lightning = 3;
+                                        lightningLength = 10;
+                                        health*=1.5f;
+
+
+                                        status = StatusEffects.sapped;
+                                        statusDuration = 120f;
+                                    }};
+                                }}
+            )
+            );
 
             legCount = 8;
             legGroupSize = 2;
