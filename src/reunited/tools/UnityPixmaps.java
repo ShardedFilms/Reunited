@@ -121,7 +121,7 @@ public class UnityPixmaps{
             rand.setSeed(type.name.hashCode());
 
             //generate random wrecks
-
+/*
             int splits = 3;
             float degrees = rand.random(360f);
             float offsetRange = Math.max(type.region.width, type.region.height) * 0.15f;
@@ -148,8 +148,8 @@ public class UnityPixmaps{
             });
 
             for(int i = 0; i < wrecks.length; i++){
-                packAndAdd(wrecks[i], "../rubble/" + type.name + "-wreck" + i);
-            }
+                packAndAdd( wrecks[i], "../rubble/" + type.name + "-wreck" + i);
+            }*/
 
 
 
