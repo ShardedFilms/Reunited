@@ -56,9 +56,9 @@ public class UUnitTypes {
             legGroupSize = 2;
             legMoveSpace = 0.7f;
             legPairOffset = 0.2f;
-            legLength = 200f;
-            legExtension = -24f;
-            legBaseOffset = 9f;
+            legLength = 192f;
+            legExtension = -30f;
+            legBaseOffset = 12f;
             rippleScale = 3.4f;
             legSplashDamage = 260f;
             legSplashRange = 80f;
