@@ -39,7 +39,6 @@ import static mindustry.Vars.*;
 
 public class UUnitTypes {
     public static @EntityDef({Unitc.class, Legsc.class}) UnitType arcaetana;
-
     public static void load(){
 
         arcaetana = new UnitType("arcaetana"){{
@@ -61,13 +60,14 @@ public class UUnitTypes {
             legExtension = -24f;
             legBaseOffset = 9f;
             rippleScale = 3.4f;
-            legSplashDamage = 130f;
-            legSplashRange = 60f;
+            legSplashDamage = 260f;
+            legSplashRange = 80f;
             ammoType = new ItemAmmoType(Items.silicon, 12);
 
             hovering = true;
             shadowElevation = 1.05f;
             groundLayer = Layer.legUnit + 0.03f;
+            constructor = LegsUnit::create;
         }};
     }
 }
