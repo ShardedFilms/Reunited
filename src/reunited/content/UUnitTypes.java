@@ -139,8 +139,8 @@ public class UUnitTypes {
                             }},
                     new Weapon(name + "-arcane"){{
 
-                        x = -16f;
-                        y=0f;
+                        x = 0f;
+                        y=-16f;
                         shootY = 12f;
                         reload = 84f;
                         recoil = 24f;
@@ -171,8 +171,7 @@ public class UUnitTypes {
                             width = 13f;
                             height = 27f;
                             shrinkY = 0f;
-                            collidesAir = false;
-                            scaleLife = true;
+                            collidesAir = true;
                             pierceCap = 2;
 
                             status = UStatusEffects.sappedMelting;
