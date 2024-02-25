@@ -38,7 +38,7 @@ import static mindustry.Vars.*;
  */
 
 public class UUnitTypes {
-    public static @EntityDef({Unitc.class, Legsc.class}) UnitType arcaetana;
+    public static UnitType arcaetana;
     public static void load(){
 
         arcaetana = new UnitType("arcaetana"){{
@@ -49,10 +49,10 @@ public class UUnitTypes {
             armor = 26f;
             lightRadius = 350f;
 
-            rotateSpeed = 2f;
+            rotateSpeed = 1.2f;
             drownTimeMultiplier = 10f;
             weapons.add(
-                    weapons.add(new Weapon(name + "-gunner"){{
+new Weapon(name + "-gunner"){{
 
                                     x = 28f;
                                     y = 24f;
@@ -122,9 +122,10 @@ public class UUnitTypes {
                                     lightningLength = 5;
                                     lightningLengthRand = 2;
                                     lightningAngleRand = 15f;
+                                    ammoMultiplier = 2f;
                                 }};
                             }}
-            )
+            
             );
 
             legCount = 8;
