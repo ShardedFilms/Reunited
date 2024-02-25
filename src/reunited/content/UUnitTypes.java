@@ -52,6 +52,23 @@ public class UUnitTypes {
 
             rotateSpeed = 1.2f;
             drownTimeMultiplier = 10f;
+
+            legCount = 8;
+            legGroupSize = 2;
+            legMoveSpace = 0.7f;
+            legPairOffset = 0.2f;
+            legLength = 192f;
+            legExtension = -20f;
+            legBaseOffset = 16f;
+            rippleScale = 3.4f;
+            legSplashDamage = 260f;
+            legSplashRange = 120f;
+            ammoType = new ItemAmmoType(Items.silicon, 12);
+
+            hovering = true;
+            shadowElevation = 1.05f;
+            groundLayer = Layer.legUnit + 0.03f;
+            constructor = LegsUnit::create;
             weapons.add(
                             new Weapon(name + "-gunner"){{
 
@@ -123,7 +140,8 @@ public class UUnitTypes {
                     new Weapon(name + "-arcane"){{
 
                         x = -16f;
-                        shootY = 8f;
+                        y=0f;
+                        shootY = 12f;
                         reload = 84f;
                         recoil = 24f;
                         rotate = true;
@@ -189,22 +207,6 @@ public class UUnitTypes {
 
             );
 
-            legCount = 8;
-            legGroupSize = 2;
-            legMoveSpace = 0.7f;
-            legPairOffset = 0.2f;
-            legLength = 192f;
-            legExtension = -20f;
-            legBaseOffset = 16f;
-            rippleScale = 3.4f;
-            legSplashDamage = 260f;
-            legSplashRange = 120f;
-            ammoType = new ItemAmmoType(Items.silicon, 12);
-
-            hovering = true;
-            shadowElevation = 1.05f;
-            groundLayer = Layer.legUnit + 0.03f;
-            constructor = LegsUnit::create;
         }};
     }
 }

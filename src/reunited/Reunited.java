@@ -16,6 +16,7 @@ public class Reunited extends Mod{
     @Override
     public void loadContent(){
         EntityRegistry.register();
+        UStatusEffects.load();
         UUnitTypes.load();
     }
 
