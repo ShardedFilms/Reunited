@@ -151,14 +151,12 @@ public class UUnitTypes {
                         rotateSpeed = 0.6f;
                         mirror=false;
                         //shootSound = Sounds.missile;
-                        bullet = new SlowRailBulletType(20f, 720f){{
+                        bullet = new BasicBulletType(20f, 720f){{
                             lifetime = 20f;
                             splashDamageRadius = 160f;
                             splashDamage = 1100f;
                             hitEffect = Fx.sapExplosion;
                             ammoMultiplier = 4f;
-                            trailEffect = UFx.coloredRailgunSmallTrail;
-                            trailSpacing = 15f;
                             backColor = trailColor = Pal.sapBulletBack;
                             frontColor = lightningColor = Pal.sapBullet;
                             lightning = 3;
