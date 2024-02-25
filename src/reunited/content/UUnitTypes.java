@@ -24,6 +24,7 @@ import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
+import reunited.content.*;
 
 import ent.anno.Annotations.*;
 import reunited.entities.bullet.SlowRailBulletType;
@@ -64,7 +65,8 @@ public class UUnitTypes {
             legSplashDamage = 260f;
             legSplashRange = 120f;
             ammoType = new ItemAmmoType(Items.silicon, 12);
-
+            immunities.add(StatusEffects.sapped);
+            immunities.add(UStatusEffects.sappedMelting);
             hovering = true;
             shadowElevation = 1.05f;
             groundLayer = Layer.legUnit + 0.03f;
@@ -76,7 +78,7 @@ public class UUnitTypes {
                                     y = 24f;
                                     shootY = 8f;
                                     reload = 6f;
-                                    recoil = 8f;
+                                    recoil = 2f;
                                     rotate = true;
                                     shootCone = 20f;
                                     inaccuracy = 2f;
@@ -108,9 +110,9 @@ public class UUnitTypes {
 
                                 x = 24f;
                                 y = 0f;
-                                shootY = 24f;
+                                shootY = 4f;
                                 reload = 40f;
-                                recoil = 12f;
+                                recoil = 4f;
                                 rotate = true;
                                 shootCone = 20f;
 
@@ -142,8 +144,8 @@ public class UUnitTypes {
                         x = 0f;
                         y=-16f;
                         shootY = 12f;
-                        reload = 84f;
-                        recoil = 24f;
+                        reload = 120f;
+                        recoil = 12f;
                         rotate = true;
                         shootCone = 5f;
                         inaccuracy = 0f;
@@ -151,8 +153,8 @@ public class UUnitTypes {
                         rotateSpeed = 0.6f;
                         mirror=false;
                         //shootSound = Sounds.missile;
-                        bullet = new BasicBulletType(20f, 720f){{
-                            lifetime = 20f;
+                        bullet = new BasicBulletType(25f, 720f){{
+                            lifetime = 22f;
                             splashDamageRadius = 160f;
                             splashDamage = 1100f;
                             hitEffect = Fx.sapExplosion;
@@ -166,8 +168,8 @@ public class UUnitTypes {
                             lightRadius = 40f;
                             lightColor = Pal.sap;
                             lightOpacity = 0.6f;
-                            width = 16f;
-                            height = 32f;
+                            width = 24f;
+                            height = 48f;
                             shrinkY = 0f;
                             collidesAir = true;
                             pierceCap = 2;
