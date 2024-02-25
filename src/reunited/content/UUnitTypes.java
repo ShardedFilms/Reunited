@@ -46,14 +46,13 @@ public class UUnitTypes {
             speed = 0.88f;
             hitSize = 80f;
             health = 192000;
-            armor = 13f;
+            armor = 26f;
             lightRadius = 350f;
 
             rotateSpeed = 2f;
             drownTimeMultiplier = 10f;
             weapons.add(
                     weapons.add(new Weapon(name + "-gunner"){{
-                                    layerOffset = -0.01f;
 
                                     x = 28f;
                                     y = 24f;
@@ -63,11 +62,14 @@ public class UUnitTypes {
                                     rotate = true;
                                     shootCone = 20f;
                                     inaccuracy = 2f;
-                                    shoot.shots = 1;
+                                    shoot.shots = 2;
+                                    shoot.shotDelay =3;
 
                                     rotateSpeed = 2f;
                                     //shootSound = Sounds.missile;
 
+                                    mirror=true;
+                                    alternate=true;
                                     bullet = new BasicBulletType(10f, 24f){{
                                         width = 20f;
                                         height = 25f;
@@ -79,16 +81,49 @@ public class UUnitTypes {
                                         despawnEffect = Fx.sapExplosion;
                                         backColor = trailColor = Pal.sapBulletBack;
                                         frontColor = lightningColor = lightColor = Pal.sapBullet;
-                                        lifetime = 26;
+                                        lifetime = 36;
                                         lightning = 3;
                                         lightningLength = 10;
-                                        health*=1.5f;
-
 
                                         status = StatusEffects.sapped;
                                         statusDuration = 120f;
                                     }};
-                                }}
+                                }},
+                            new Weapon(name + "-laser-cannon"){{
+
+                                x = 24f;
+                                y = 0f;
+                                shootY = 24f;
+                                reload = 40f;
+                                recoil = 8f;
+                                rotate = true;
+                                shootCone = 20f;
+
+                                inaccuracy = 0f;
+                                rotateSpeed = 1f;
+                                //shootSound = Sounds.missile;
+
+                                mirror=true;
+                                alternate=true;
+                                bullet = new LaserBulletType(280f){{
+                                    colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
+                                    length = 320f;
+                                    width = 30f;
+                                    sideAngle = 20f;
+                                    sideWidth = 2.5f;
+                                    sideLength = 90f;
+                                    shootEffect = UFx.sapPlasmaShoot;
+                                    hitColor = lightColor = lightningColor = Pal.sapBullet;
+                                    status = StatusEffects.sapped;
+                                    statusDuration = 180f;
+                                    lightningSpacing = 16f;
+                                    lightningDelay = 0.1f;
+                                    lightningDamage = 28f;
+                                    lightningLength = 5;
+                                    lightningLengthRand = 2;
+                                    lightningAngleRand = 15f;
+                                }};
+                            }}
             )
             );
 
@@ -97,11 +132,11 @@ public class UUnitTypes {
             legMoveSpace = 0.7f;
             legPairOffset = 0.2f;
             legLength = 192f;
-            legExtension = -30f;
-            legBaseOffset = 12f;
+            legExtension = -20f;
+            legBaseOffset = 16f;
             rippleScale = 3.4f;
             legSplashDamage = 260f;
-            legSplashRange = 80f;
+            legSplashRange = 120f;
             ammoType = new ItemAmmoType(Items.silicon, 12);
 
             hovering = true;
