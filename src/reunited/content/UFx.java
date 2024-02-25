@@ -8,10 +8,30 @@ import mindustry.entities.*;
 import mindustry.graphics.*;
 
 import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.lineAngle;
+import static arc.graphics.g2d.Lines.stroke;
 import static arc.math.Angles.randLenVectors;
 
 public final class UFx{
     public static final Effect
+    // particle
+
+            sapMelt = new Effect(12, e -> {
+        color(Pal.sapBullet);
+        stroke(e.fout() * 2f);
+
+        randLenVectors(e.id, 6, e.finpow() * 18f, (x, y) -> {
+            float ang = Mathf.angle(x, y);
+            lineAngle(e.x + x, e.y + y, ang, e.fout() * 4 + 1f);
+        });
+    }),
+         sapBurning = new Effect(35f, e -> {
+             color(Pal.sapBullet, Pal.sapBulletBack, e.fin());
+
+             randLenVectors(e.id, 3, 2f + e.fin() * 7f, (x, y) -> {
+                 Fill.circle(e.x + x, e.y + y, 0.1f + e.fout() * 1.4f);
+             });
+         }),
 
     // Shoot
 

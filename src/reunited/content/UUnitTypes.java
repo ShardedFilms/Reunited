@@ -26,6 +26,7 @@ import mindustry.type.weapons.*;
 import mindustry.world.meta.*;
 
 import ent.anno.Annotations.*;
+import reunited.entities.bullet.SlowRailBulletType;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -52,7 +53,7 @@ public class UUnitTypes {
             rotateSpeed = 1.2f;
             drownTimeMultiplier = 10f;
             weapons.add(
-new Weapon(name + "-gunner"){{
+                            new Weapon(name + "-gunner"){{
 
                                     x = 28f;
                                     y = 24f;
@@ -67,9 +68,6 @@ new Weapon(name + "-gunner"){{
 
                                     rotateSpeed = 2f;
                                     //shootSound = Sounds.missile;
-
-                                    mirror=true;
-                                    alternate=true;
                                     bullet = new BasicBulletType(10f, 24f){{
                                         width = 20f;
                                         height = 25f;
@@ -95,16 +93,13 @@ new Weapon(name + "-gunner"){{
                                 y = 0f;
                                 shootY = 24f;
                                 reload = 40f;
-                                recoil = 8f;
+                                recoil = 12f;
                                 rotate = true;
                                 shootCone = 20f;
 
                                 inaccuracy = 0f;
                                 rotateSpeed = 1f;
                                 //shootSound = Sounds.missile;
-
-                                mirror=true;
-                                alternate=true;
                                 bullet = new LaserBulletType(280f){{
                                     colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
                                     length = 320f;
@@ -122,10 +117,76 @@ new Weapon(name + "-gunner"){{
                                     lightningLength = 5;
                                     lightningLengthRand = 2;
                                     lightningAngleRand = 15f;
-                                    ammoMultiplier = 2f;
+                                    ammoMultiplier = 4f;
                                 }};
-                            }}
-            
+                            }},
+                    new Weapon(name + "-arcane"){{
+
+                        x = -16f;
+                        shootY = 8f;
+                        reload = 84f;
+                        recoil = 24f;
+                        rotate = true;
+                        shootCone = 5f;
+                        inaccuracy = 0f;
+
+                        rotateSpeed = 0.6f;
+                        mirror=false;
+                        //shootSound = Sounds.missile;
+                        bullet = new SlowRailBulletType(20f, 720f){{
+                            lifetime = 20f;
+                            splashDamageRadius = 160f;
+                            splashDamage = 1100f;
+                            hitEffect = Fx.sapExplosion;
+                            ammoMultiplier = 4f;
+                            trailEffect = UFx.coloredRailgunSmallTrail;
+                            trailSpacing = 15f;
+                            backColor = trailColor = Pal.sapBulletBack;
+                            frontColor = lightningColor = Pal.sapBullet;
+                            lightning = 3;
+                            lightningLength = 20;
+                            smokeEffect = Fx.shootBigSmoke2;
+                            hitShake = 10f;
+                            lightRadius = 40f;
+                            lightColor = Pal.sap;
+                            lightOpacity = 0.6f;
+                            width = 13f;
+                            height = 27f;
+                            shrinkY = 0f;
+                            collidesAir = false;
+                            scaleLife = true;
+                            pierceCap = 2;
+
+                            status = UStatusEffects.sappedMelting;
+                            statusDuration = 60f * 10;
+
+                            fragVelocityMin=1f;
+                            fragLifeMin=0.2f;
+                            fragBullets=18;
+                            fragBullet = new ArtilleryBulletType(8, 30){{
+                                hitEffect = Fx.sapExplosion;
+                                knockback = 0.8f;
+                                lifetime = 30f;
+                                width = height = 30f;
+                                collidesTiles = false;
+                                splashDamageRadius = 110f;
+                                splashDamage = 90f;
+                                backColor = Pal.sapBulletBack;
+                                frontColor = lightningColor = Pal.sapBullet;
+                                lightning = 2;
+                                lightningLength = 5;
+                                smokeEffect = Fx.shootBigSmoke2;
+                                hitShake = 5f;
+                                lightRadius = 30f;
+                                lightColor = Pal.sap;
+                                lightOpacity = 0.5f;
+
+                                status = StatusEffects.sapped;
+                                statusDuration = 60f * 10;
+                            }};
+                        }};
+                    }}
+
             );
 
             legCount = 8;
