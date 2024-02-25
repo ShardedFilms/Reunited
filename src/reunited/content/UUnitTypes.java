@@ -166,8 +166,8 @@ public class UUnitTypes {
                             lightRadius = 40f;
                             lightColor = Pal.sap;
                             lightOpacity = 0.6f;
-                            width = 13f;
-                            height = 27f;
+                            width = 16f;
+                            height = 32f;
                             shrinkY = 0f;
                             collidesAir = true;
                             pierceCap = 2;
