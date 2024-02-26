@@ -124,7 +124,7 @@ public class UUnitTypes {
                                     length = 320f;
                                     width = 48f;
                                     sideAngle = 20f;
-                                    sideWidth = 2.5f;
+                                    sideWidth = 1.5f;
                                     sideLength = 100f;
                                     shootEffect = UFx.sapPlasmaShoot;
                                     hitColor = lightColor = lightningColor = Pal.sapBullet;
@@ -173,22 +173,29 @@ public class UUnitTypes {
                             shrinkY = 0f;
                             collidesAir = true;
                             pierceCap = 2;
+                            buildingDamageMultiplier = 3f;
+                            backMove = reflectable = false;
+                            pierceBuilding=true;
+                            pierce=true;
 
                             status = UStatusEffects.sappedMelting;
                             statusDuration = 60f * 10;
 
                             fragVelocityMin=1f;
-                            fragLifeMin=0.2f;
+                            fragLifeMin=1f;
+                            fragVelocityMin=1;
                             fragBullets=18;
                             fragBullet = new ArtilleryBulletType(8, 30){{
                                 hitEffect = Fx.sapExplosion;
                                 knockback = 0.8f;
                                 lifetime = 30f;
                                 width = height = 30f;
-                                collidesTiles = false;
+                                collidesTiles = true;
+                                collidesAir=true;
                                 splashDamageRadius = 110f;
                                 splashDamage = 90f;
                                 backColor = Pal.sapBulletBack;
+                                buildingDamageMultiplier = 2f;
                                 frontColor = lightningColor = Pal.sapBullet;
                                 lightning = 2;
                                 lightningLength = 5;

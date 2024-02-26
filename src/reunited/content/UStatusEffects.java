@@ -23,9 +23,9 @@ public class UStatusEffects {
 
         sappedMelting = new StatusEffect("sapped-melting"){{
             color = Pal.sapBulletBack;
-            speedMultiplier = 0.6f;
+            speedMultiplier = 0.8f;
             healthMultiplier = 0.6f;
-            damage = 1f;
+            damage = 2f;
             effect = UFx.sapMelt;
             effectChance = 0.2f;
 
