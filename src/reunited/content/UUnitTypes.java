@@ -87,12 +87,12 @@ public class UUnitTypes {
 
                                     rotateSpeed = 2f;
                                     //shootSound = Sounds.missile;
-                                    bullet = new BasicBulletType(10f, 24f){{
+                                    bullet = new BasicBulletType(10f, 80f){{
                                         width = 20f;
                                         height = 25f;
                                         shrinkY = 0.5f;
-                                        splashDamageRadius = 80f;
-                                        splashDamage = 100f;
+                                        splashDamageRadius = 70f;
+                                        splashDamage = 65f;
                                         ammoMultiplier = 5f;
                                         hitEffect = Fx.sapExplosion;
                                         despawnEffect = Fx.sapExplosion;
@@ -122,10 +122,10 @@ public class UUnitTypes {
                                 bullet = new LaserBulletType(280f){{
                                     colors = new Color[]{Pal.sapBulletBack.cpy().a(0.4f), Pal.sapBullet, Color.white};
                                     length = 320f;
-                                    width = 30f;
+                                    width = 48f;
                                     sideAngle = 20f;
                                     sideWidth = 2.5f;
-                                    sideLength = 90f;
+                                    sideLength = 100f;
                                     shootEffect = UFx.sapPlasmaShoot;
                                     hitColor = lightColor = lightningColor = Pal.sapBullet;
                                     status = StatusEffects.sapped;
