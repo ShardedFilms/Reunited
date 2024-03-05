@@ -181,9 +181,8 @@ public class UUnitTypes {
                             status = UStatusEffects.sappedMelting;
                             statusDuration = 60f * 10;
 
-                            fragVelocityMin=1f;
                             fragLifeMin=1f;
-                            fragVelocityMin=1;
+                            fragVelocityMin=0.1f;
                             fragBullets=18;
                             fragBullet = new ArtilleryBulletType(8, 30){{
                                 hitEffect = Fx.sapExplosion;
