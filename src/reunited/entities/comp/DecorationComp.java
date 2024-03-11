@@ -1,4 +1,4 @@
-package reunited.entities.comp;
+/*package reunited.entities.comp;
 
 
 import mindustry.gen.*;
@@ -35,4 +35,4 @@ abstract class DecorationComp implements Unitc{
             decor.added(self());
         }
     }
-}
+}*/
