@@ -54,14 +54,14 @@ public class UUnitTypes {
             drag = 0.016f;
             flying = true;
             range = 200f;
-            hitSize = 30f;
+            hitSize = 40f;
             lowAltitude = true;
             forceMultiTarget = true;
             armor = 10f;
             // targetFlags = new BlockFlag[]{BlockFlag.launchPad, BlockFlag.storage, BlockFlag.battery, null};
             targetFlags = new BlockFlag[]{BlockFlag.generator, BlockFlag.turret, null};
-            engineOffset = 20f;
-            engineSize = 8f;
+            engineOffset = 22f;
+            engineSize = 6f;
             ammoType = new ItemAmmoType(Items.graphite);
 
             weapons.add(new Weapon(name + "-missiles"){{
@@ -82,8 +82,8 @@ public class UUnitTypes {
                 shootSound = Sounds.missile;
 
                 bullet = new MissileBulletType(6f, 21){{
-                    width = 10f;
-                    height = 12f;
+                    width = 8f;
+                    height = 9f;
                     shrinkY = 0f;
                     drag = -0.003f;
                     homingRange = 80f;

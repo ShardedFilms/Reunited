@@ -20,6 +20,8 @@ public class Reunited extends Mod{
         EntityRegistry.register();
         UStatusEffects.load();
         UUnitTypes.load();
+        CampaignModifier.load();
+        generate();
     }
 
     public void generate() {
