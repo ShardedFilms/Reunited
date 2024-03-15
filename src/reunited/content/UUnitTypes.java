@@ -60,8 +60,8 @@ public class UUnitTypes {
             armor = 10f;
             // targetFlags = new BlockFlag[]{BlockFlag.launchPad, BlockFlag.storage, BlockFlag.battery, null};
             targetFlags = new BlockFlag[]{BlockFlag.generator, BlockFlag.turret, null};
-            engineOffset = 18f;
-            engineSize = 5f;
+            engineOffset = 20f;
+            engineSize = 8f;
             ammoType = new ItemAmmoType(Items.graphite);
 
             weapons.add(new Weapon(name + "-missiles"){{
@@ -73,7 +73,7 @@ public class UUnitTypes {
                 shake = 1.2f;
                 shoot= new ShootAlternate(){{
                     barrels=2;
-                    spread =2f;
+                    spread =4f;
                     shots=4;
                     shotDelay =1;
                 }};
@@ -98,7 +98,7 @@ public class UUnitTypes {
                     despawnEffect = UFx.blastExplosion2;
                     weaveScale = 5f;
                     weaveMag = 1f;
-                    sprite = "large-missile";
+                    sprite = "missile-large";
                 }};
             }});
         }};

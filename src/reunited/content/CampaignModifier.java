@@ -22,7 +22,7 @@ public class CampaignModifier{
         }};*/
 
 
-        craters = new SectorPreset("craters", serpulo, 18){{
+        craters = new SectorPreset("u-craters", serpulo, 18){{
             startWaveTimeMultiplier*=3;
             captureWave = 30;
             difficulty = 2;
