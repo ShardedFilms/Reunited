@@ -1,8 +1,7 @@
 package reunited.content;
 
-
-import arc.KeyBinds;
-import mindustry.content.SectorPresets;
+import mindustry.content.*;
+import mindustry.maps.generators.*;
 import mindustry.type.*;
 
 import static mindustry.content.Planets.*;
@@ -10,7 +9,7 @@ import static mindustry.content.Planets.*;
 public class CampaignModifier{
     public static SectorPreset
             // Example : groundZero,
-            ucraters;
+            craters;
 
     public static void load(){
         // Example
@@ -24,11 +23,12 @@ public class CampaignModifier{
             startWaveTimeMultiplier = 3f;
         }};*/
 
-        ucraters = new SectorPreset("u-craters", serpulo, 18){{
+        craters = new SectorPreset("u-craters", serpulo, 18){{
             startWaveTimeMultiplier*=3;
             captureWave = 30;
             difficulty = 2;
-
+            alwaysUnlocked = true;
         }};
+
     }
 }
