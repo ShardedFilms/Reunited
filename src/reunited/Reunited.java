@@ -21,7 +21,6 @@ public class Reunited extends Mod{
         UStatusEffects.load();
         UUnitTypes.load();
         CampaignModifier.load();
-        generate();
     }
 
     public void generate() {
