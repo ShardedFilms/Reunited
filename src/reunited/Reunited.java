@@ -13,6 +13,8 @@ public class Reunited extends Mod{
     public static String author = "sharded_dev";
 
 
+
+
     @Override
     public void loadContent(){
         EntityRegistry.register();
@@ -20,7 +22,7 @@ public class Reunited extends Mod{
         UUnitTypes.load();
     }
 
-    public void Generate() {
+    public void generate() {
             Vars.content.units().each(u -> {
                 if(u.name.contains(Reunited.modname)){
                     UnityPixmaps.saveUnitPixmap(Core.atlas.getPixmap(u.fullIcon).crop(), u);

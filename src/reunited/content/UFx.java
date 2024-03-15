@@ -1,16 +1,25 @@
 package reunited.content;
 
-import arc.graphics.Color;
+import arc.*;
+import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.math.geom.*;
+import arc.struct.*;
 import arc.util.*;
 import mindustry.entities.*;
+import mindustry.entities.abilities.*;
+import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.units.UnitAssembler.*;
 
+import static arc.graphics.g2d.Draw.rect;
 import static arc.graphics.g2d.Draw.*;
-import static arc.graphics.g2d.Lines.lineAngle;
-import static arc.graphics.g2d.Lines.stroke;
-import static arc.math.Angles.randLenVectors;
+import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
+import static mindustry.Vars.*;
 
 public final class UFx{
     public static final Effect
@@ -68,7 +77,33 @@ public final class UFx{
             Tmp.v2.trns(e.rotation - 90f, 9f * s * ((e.fout() + 2f) / 3f), -20f);
             Fill.tri(Tmp.v1.x + e.x, Tmp.v1.y + e.y, -Tmp.v1.x + e.x, -Tmp.v1.y + e.y, Tmp.v2.x + e.x, Tmp.v2.y + e.y);
         }
+    }),
+
+    //explosions
+    blastExplosion2 = new Effect(25, e -> {
+        color(Pal.missileYellow);
+
+        e.scaled(6, i -> {
+            stroke(3f * i.fout());
+            Lines.circle(e.x, e.y, 5f + i.fin() * 15f);
+        });
+
+        color(Color.gray);
+
+        randLenVectors(e.id, 6, 2f + 25f * e.finpow(), (x, y) -> {
+            Fill.circle(e.x + x, e.y + y, e.fout() * 4f + 0.5f);
+        });
+
+        color(Pal.missileYellowBack);
+        stroke(e.fout());
+
+        randLenVectors(e.id + 1, 4, 1f + 23f * e.finpow(), (x, y) -> {
+            lineAngle(e.x + x, e.y + y, Mathf.angle(x, y), 1f + e.fout() * 3f);
+        });
+
+        Drawf.light(e.x, e.y, 60f, Pal.missileYellowBack, 0.8f * e.fout());
     });
+
     // AssertionError
     private UFx(){
         throw new AssertionError();

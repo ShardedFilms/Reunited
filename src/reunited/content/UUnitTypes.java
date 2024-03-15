@@ -40,8 +40,68 @@ import static mindustry.Vars.*;
  */
 
 public class UUnitTypes {
-    public static UnitType arcaetana;
+    public static @EntityDef({Unitc.class, Legsc.class}) UnitType arcaetana;
+
+    public static @EntityDef({Unitc.class}) UnitType zenith;
     public static void load(){
+
+        zenith = new UnitType("zenith-boss"){{
+
+            constructor = UnitEntity::create;
+            health = 1400;
+            speed = 1.8f;
+            accel = 0.04f;
+            drag = 0.016f;
+            flying = true;
+            range = 200f;
+            hitSize = 30f;
+            lowAltitude = true;
+            forceMultiTarget = true;
+            armor = 10f;
+            // targetFlags = new BlockFlag[]{BlockFlag.launchPad, BlockFlag.storage, BlockFlag.battery, null};
+            targetFlags = new BlockFlag[]{BlockFlag.generator, BlockFlag.turret, null};
+            engineOffset = 18f;
+            engineSize = 5f;
+            ammoType = new ItemAmmoType(Items.graphite);
+
+            weapons.add(new Weapon(name + "-missiles"){{
+                reload = 36f;
+                x = 11f;
+                y = -1f;
+                shootY =6f;
+                rotate = true;
+                shake = 1.2f;
+                shoot= new ShootAlternate(){{
+                    barrels=2;
+                    spread =2f;
+                    shots=4;
+                    shotDelay =1;
+                }};
+                inaccuracy = 5f;
+                velocityRnd = 0.1f;
+                shootSound = Sounds.missile;
+
+                bullet = new MissileBulletType(6f, 21){{
+                    width = 10f;
+                    height = 12f;
+                    shrinkY = 0f;
+                    drag = -0.003f;
+                    homingRange = 80f;
+                    keepVelocity = false;
+                    splashDamageRadius = 32f;
+                    splashDamage = 20f;
+                    lifetime = 50f;
+                    trailColor = Pal.unitBack;
+                    backColor = Pal.unitBack;
+                    frontColor = Pal.unitFront;
+                    hitEffect = UFx.blastExplosion2;
+                    despawnEffect = UFx.blastExplosion2;
+                    weaveScale = 5f;
+                    weaveMag = 1f;
+                    sprite = "large-missile";
+                }};
+            }});
+        }};
 
         arcaetana = new UnitType("arcaetana"){{
             drag = 0.1f;
