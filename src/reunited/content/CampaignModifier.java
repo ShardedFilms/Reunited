@@ -4,6 +4,7 @@ import mindustry.content.*;
 import mindustry.maps.generators.*;
 import mindustry.type.*;
 
+import static mindustry.Vars.*;
 import static mindustry.content.Planets.*;
 
 public class CampaignModifier{
@@ -23,12 +24,17 @@ public class CampaignModifier{
             startWaveTimeMultiplier = 3f;
         }};*/
 
-        craters = new SectorPreset("u-craters", serpulo, 18){{
+        /*craters = new SectorPreset("u-craters", serpulo, 18){{
             startWaveTimeMultiplier*=3;
             captureWave = 30;
             difficulty = 2;
             alwaysUnlocked = true;
-        }};
-
+        }};*/
+        (craters = new SectorPreset("u-craters", mods.getMod("reunited")){{
+            startWaveTimeMultiplier *=3;
+            captureWave = 30;
+            difficulty = 2;
+            alwaysUnlocked = true;
+        }}).initialize(serpulo, 18);
     }
 }
