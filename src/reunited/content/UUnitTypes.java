@@ -130,7 +130,7 @@ public class UUnitTypes {
             weapons.add(new Weapon("0"){{
                 reload = 180f;
                 x = 0f;
-                shootY =6f;
+                shootY =8f;
                 shake = 4f;
                 inaccuracy = 0f;
                 velocityRnd = 0f;
