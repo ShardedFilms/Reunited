@@ -1,5 +1,6 @@
 package reunited.util;
 
+import arc.util.*;
 import java.lang.reflect.*;
 
 import static mindustry.Vars.*;
@@ -164,6 +165,20 @@ public final class ReflectUtils{
             return Class.forName(trace[3].getClassName(), false, mods.mainLoader());
         }catch(ClassNotFoundException e){
             return null;
+        }
+    }
+    public static void safeSet(Object object, String field, Object value){
+        try{
+            Reflect.set(object, field, value);
+        }catch(Exception ignored){
+
+        }
+    }
+    public static void safeSet(String className, String field, Object value){
+        try{
+            Reflect.set(Class.forName(className, true, mods.mainLoader()), field, value);
+        }catch(Exception ignored){
+
         }
     }
 }

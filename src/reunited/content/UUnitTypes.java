@@ -1,5 +1,6 @@
 package reunited.content;
 
+import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -23,11 +24,14 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
 import mindustry.type.weapons.*;
+import mindustry.world.blocks.environment.Floor;
 import mindustry.world.meta.*;
 import reunited.content.*;
 
 import ent.anno.Annotations.*;
 import reunited.entities.bullet.SlowRailBulletType;
+import reunited.entities.effects.SwirlEffect;
+import reunited.util.ReflectUtils;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
@@ -42,13 +46,13 @@ import static mindustry.Vars.*;
 public class UUnitTypes {
     public static @EntityDef({Unitc.class, Legsc.class}) UnitType arcaetana;
 
-    public static @EntityDef({Unitc.class}) UnitType zenith;
+    public static @EntityDef({Unitc.class}) UnitType zenith,assailant;
     public static void load(){
 
         zenith = new UnitType("zenith-boss"){{
 
             constructor = UnitEntity::create;
-            health = 1400;
+            health = 1000;
             speed = 1.8f;
             accel = 0.04f;
             drag = 0.016f;
@@ -65,7 +69,7 @@ public class UUnitTypes {
             ammoType = new ItemAmmoType(Items.graphite);
 
             weapons.add(new Weapon(name + "-missiles"){{
-                reload = 36f;
+                reload = 50f;
                 x = 11f;
                 y = -1f;
                 shootY =6f;
@@ -102,6 +106,133 @@ public class UUnitTypes {
                 }};
             }});
         }};
+        assailant = new UnitType("assailant"){{
+
+            drawCell=false;
+            constructor = UnitEntity::create;
+            health = 26100;
+            speed = 8f;
+            boostMultiplier=4f;
+            accel = 0.04f;
+            drag = 0.016f;
+            flying = true;
+            range = 200f;
+            hitSize = 20f;
+            lowAltitude = true;
+            forceMultiTarget = true;
+            armor = 200f;
+            // targetFlags = new BlockFlag[]{BlockFlag.launchPad, BlockFlag.storage, BlockFlag.battery, null};
+            targetFlags = new BlockFlag[]{BlockFlag.generator, BlockFlag.turret, null};
+            engineOffset = 8f;
+            engineSize = 3f;
+            ammoType = new ItemAmmoType(Items.copper);
+
+            weapons.add(new Weapon("0"){{
+                reload = 180f;
+                x = 0f;
+                shootY =6f;
+                shake = 4f;
+                inaccuracy = 0f;
+                velocityRnd = 0f;
+                mirror=false;
+
+                bullet = new LaserBulletType(){{
+                    for(var i = 0; i < 7; i++){
+                        int len = i*2;
+                        spawnBullets.add(
+                            bullet = new LightningBulletType(){{
+                                damage = 81;
+                        lightningColor = hitColor = Pal.accent;
+                        damage = 40f;
+                        lightningLength = 7*len;
+                        // Final would be 56
+                        lightningLengthRand = 7;
+                        shootEffect=Fx.none;
+                    }});};
+                    damage = 24000f;
+                    sideWidth = 0f;
+                    sideAngle = 20f;
+                    sideLength = 0f;
+                    width = 40f;
+                    length = 460f;
+                    shootEffect = Fx.shockwave;
+                    colors = new Color[]{Pal.accent.cpy().a(0.5f),Pal.accent, Color.white};
+                }
+                    public void hitEntity(Bullet b, Hitboxc entity, float health) {
+                        super.hitEntity(b,entity,health);
+
+                        if(entity instanceof Unit unit){
+                            if(impact) unit.kill();
+                            unit.destroy();
+                            unit.dead(true);
+                            Call.unitDestroy(unit.id);
+                            ReflectUtils.safeSet(unit, "trueHealth", 0f);
+                            ReflectUtils.safeSet(unit, "trueMaxHealth", 0f);
+                        };
+                    }
+                };
+            }},
+                    new Weapon("1"){{
+                        parts.addAll(
+                                new ShapePart(){{
+                                    progress = PartProgress.warmup;
+                                    color = Pal.accent;
+                                    circle = true;
+                                    hollow = true;
+                                    stroke = 0f;
+                                    strokeTo = 3f;
+                                    radius = 60f;
+                                    layer = Layer.effect;
+                                    y = 0;
+                                    rotateSpeed = 0;
+                                }},
+                        new HaloPart(){{
+                            progress = PartProgress.warmup;
+                            color = Pal.accent;
+                            layer = Layer.effect;
+                            y =0;
+
+                            haloRotation = 90f;
+                            shapes = 4;
+                            triLength = 0f;
+                            triLengthTo = 6f;
+                            haloRadius = 60f;
+                            tri = true;
+                            radius = 8f;
+                            rotateSpeed =5;
+                        }}
+                        );
+                        reload = 5f;
+                        x = 0f;
+                        shootY =6f;
+                        shake = 4f;
+                        inaccuracy = 0f;
+                        velocityRnd = 0f;
+                        mirror=false;
+                        shootSound = Sounds.none;
+                        bullet = new BulletType(){{
+                            instantDisappear=true;
+                            despawnEffect = hitEffect = Fx.none;
+                            shootEffect = new SwirlEffect(){{
+                                lerp =false;
+                                lifetime=30;
+                                length = 10;
+                                width =3;
+                                minRot = maxRot =360*3;
+                                maxDst = 60;
+                                minDst=64;
+
+                                followParent = rotWithParent = true;
+                            }};
+                        }
+                        };
+                    }}
+            );
+        }
+
+            public void setStats(){
+                    stats.add(Stat.canBoost, canBoost);
+            }};
 
         arcaetana = new UnitType("arcaetana"){{
             drag = 0.1f;
@@ -110,6 +241,7 @@ public class UUnitTypes {
             health = 192000;
             armor = 26f;
             lightRadius = 350f;
+            fogRadius *=4;
 
             rotateSpeed = 1.2f;
             drownTimeMultiplier = 10f;

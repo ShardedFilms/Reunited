@@ -199,8 +199,8 @@ for(def i = 0; i < 2; i++){
             def folder = Fi.get(OS.getAppDataDirectoryString('Mindustry')).child('mods')
             folder.mkdirs()
 
-            folder.child(tasks.jar.archiveFileName.get()).delete()
-            folder.child(tasks.dex.archiveFileName.get()).delete()
+            //folder.child(tasks.jar.archiveFileName.get()).delete()
+            //folder.child(tasks.dex.archiveFileName.get()).delete()
 
             new Fi(input.archiveFile.get().asFile).copyTo(folder)
             logger.log(LogLevel.LIFECYCLE, "Copied :${isDex ? 'dex' : 'jar'} output to $folder.")
